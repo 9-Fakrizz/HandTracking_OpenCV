@@ -23,6 +23,10 @@ while True:
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
     
+    cv2.putText(img, "Finger : ", (20, 450), cv2.FONT_HERSHEY_PLAIN, 2, (218, 224, 159), 2)
+    cv2.putText(img, f"Finger Count: ", (20, 410), cv2.FONT_HERSHEY_PLAIN, 2, (218, 224, 159), 3)
+   
+   
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
             for id, lm in enumerate(handLms.landmark): #get id and position
@@ -56,21 +60,17 @@ while True:
             #print(finger, len(finger))
             
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
-            cv2.putText(img, "Finger : ", (20, 450), cv2.FONT_HERSHEY_PLAIN, 2, (218, 224, 159), 2)
-            cv2.putText(img, f"Finger Count: ", (20, 410), cv2.FONT_HERSHEY_PLAIN, 2, (218, 224, 159), 3)
             if(len(finger)!=0):
                 cv2.putText(img,str(finger), (180,445), cv2.FONT_HERSHEY_PLAIN, 1, (20, 80, 155), 2)
                 cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)
             else:
                 cv2.putText(img,"NONE", (180,445), cv2.FONT_HERSHEY_PLAIN, 1, (20, 80, 155), 2)
-                cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)
+                cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)  
     
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
     cv2.putText(img,str(int(fps)), (10,60), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)
-    
-
     
     
     cv2.imshow("Image", img)
