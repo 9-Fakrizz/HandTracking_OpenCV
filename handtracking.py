@@ -16,6 +16,7 @@ pos = numpy.zeros((21, 2))
 side = "none"
 TipsID = [8, 12, 16, 20]
 Pip = [6, 10, 14, 18]
+constfinger = ['Thumb', 'Index', 'Middle', 'Ring', 'Pinky']
 
 while True:
     success, img = cap.read()
@@ -37,15 +38,24 @@ while True:
             long1= numpy.zeros((4, 1))
             long0= numpy.zeros((4, 1))
             for i in range(0, 4):
-                dx1 = mt.pow(pos[TipsID[i], 0]-pos[TipsID[i]-3, 0],2)
-                dy1 = mt.pow(pos[TipsID[i], 1]-pos[TipsID[i]-3, 1],2)
+                dx1 = mt.pow(pos[TipsID[i], 0]-pos[0, 0],2)
+                dy1 = mt.pow(pos[TipsID[i], 1]-pos[0, 1],2)
                 long1[i] = int(mt.sqrt(abs(dy1 + dx1))) 
 
-                dx0 = mt.pow(pos[Pip[i], 0]-pos[Pip[i]-1, 0],2)
-                dy0 = mt.pow(pos[Pip[i], 1]-pos[Pip[i]-1, 1],2)
+                dx0 = mt.pow(pos[Pip[i], 0]-pos[0, 0],2)
+                dy0 = mt.pow(pos[Pip[i], 1]-pos[0, 1],2)
                 long0[i] = int(mt.sqrt(abs(dy0 + dx0)))
             
+            finger=[]
+            if (Lthumb > (long0[0]/2)):
+                finger.append(constfinger[0])
+            for i in range(0, 4):
+                if (long1[i] > long0[i]):
+                    finger.append(constfinger[i+1])
             
+            print(finger, len(finger))
+                
+  
             
                 
 
