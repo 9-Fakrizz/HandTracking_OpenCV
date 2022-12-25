@@ -14,8 +14,8 @@ pTime = 0
 cTime = 0
 pos = numpy.zeros((21, 2))
 side = "none"
-TipsID = [4, 8, 12, 16, 20]
-Pip = [3, 6, 10, 14, 18]
+TipsID = [8, 12, 16, 20]
+Pip = [6, 10, 14, 18]
 
 while True:
     success, img = cap.read()
@@ -30,18 +30,22 @@ while True:
                 pos[id] = [cx, cy]
             
             #print(pos[0][0], pos[0][1])
-            long1= numpy.zeros((5, 1))
-            long0= numpy.zeros((5, 1))
-            for i in range(0, 5):
+            thdx = mt.pow(pos[4, 0]-pos[5, 0],2)
+            thdy = mt.pow(pos[4, 1]-pos[5, 1],2)
+            Lthumb = int(mt.sqrt(abs(thdy + thdx))) #thumb distancing
+            
+            long1= numpy.zeros((4, 1))
+            long0= numpy.zeros((4, 1))
+            for i in range(0, 4):
                 dx1 = mt.pow(pos[TipsID[i], 0]-pos[TipsID[i]-3, 0],2)
                 dy1 = mt.pow(pos[TipsID[i], 1]-pos[TipsID[i]-3, 1],2)
-                long1[i] = int(mt.sqrt(abs(dy1 + dx1)))
+                long1[i] = int(mt.sqrt(abs(dy1 + dx1))) 
 
                 dx0 = mt.pow(pos[Pip[i], 0]-pos[Pip[i]-1, 0],2)
                 dy0 = mt.pow(pos[Pip[i], 1]-pos[Pip[i]-1, 1],2)
                 long0[i] = int(mt.sqrt(abs(dy0 + dx0)))
             
-            print(long1[1], long0[1])
+            
             
                 
 
