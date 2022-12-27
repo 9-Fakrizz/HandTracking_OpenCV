@@ -54,22 +54,22 @@ while True:
                 dy0 = mt.pow(pos[Pip[i], 1]-pos[0, 1],2)
                 long0[i] = int(mt.sqrt(abs(dy0 + dx0)))
             
-            finger=[]
-            if (Lthumb > Lthumb0):
-                finger.append(constfinger[0])
-            for i in range(0, 4):
-                if (long1[i] > long0[i]):
-                    finger.append(constfinger[i+1])
+        finger=[]
+        if (Lthumb > Lthumb0):
+            finger.append(constfinger[0])
+        for i in range(0, 4):
+            if (long1[i] > long0[i]):
+                finger.append(constfinger[i+1])
             
             #print(finger, len(finger))
             
-            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
-            if(len(finger)!=0):
-                cv2.putText(img,str(finger), (180,445), cv2.FONT_HERSHEY_PLAIN, 1, (20, 80, 155), 2)
-                cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)
-            else:
-                cv2.putText(img,"NONE", (180,445), cv2.FONT_HERSHEY_PLAIN, 1, (20, 80, 155), 2)
-                cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)  
+        mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+        if(len(finger)!=0):
+            cv2.putText(img,str(finger), (180,445), cv2.FONT_HERSHEY_PLAIN, 1, (20, 80, 155), 2)
+            cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)
+        else:
+            cv2.putText(img,"NONE", (180,445), cv2.FONT_HERSHEY_PLAIN, 1, (20, 80, 155), 2)
+            cv2.putText(img,str(len(finger)), (260,410), cv2.FONT_HERSHEY_PLAIN, 2, (20, 80, 155), 2)  
     
     cTime = time.time()
     fps = 1/(cTime-pTime)
