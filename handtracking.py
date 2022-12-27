@@ -35,9 +35,13 @@ while True:
                 pos[id] = [cx, cy]
             
             #print(pos[0][0], pos[0][1])
-            thdx = mt.pow(pos[4, 0]-pos[5, 0],2)
-            thdy = mt.pow(pos[4, 1]-pos[5, 1],2)
+            thdx = mt.pow(pos[4, 0]-pos[17, 0],2)
+            thdy = mt.pow(pos[4, 1]-pos[17, 1],2)
             Lthumb = int(mt.sqrt(abs(thdy + thdx))) #thumb distancing
+            
+            th0dx = mt.pow(pos[3, 0]-pos[17, 0],2)
+            th0dy = mt.pow(pos[3, 1]-pos[17, 1],2)
+            Lthumb0 = int(mt.sqrt(abs(th0dy + th0dx)))
             
             long1= numpy.zeros((4, 1))
             long0= numpy.zeros((4, 1))
@@ -51,7 +55,7 @@ while True:
                 long0[i] = int(mt.sqrt(abs(dy0 + dx0)))
             
             finger=[]
-            if (Lthumb > (long0[0]/2)):
+            if (Lthumb > Lthumb0):
                 finger.append(constfinger[0])
             for i in range(0, 4):
                 if (long1[i] > long0[i]):
