@@ -1,7 +1,9 @@
 # 👋 OpenCV Hand Tracking
 
 **Author:** Supakrit Kongkham
+
 **Student ID:** 650610858
+
 **Faculty of Engineering, Chiang Mai University**
 
 ---
