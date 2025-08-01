@@ -3,7 +3,6 @@
 **Author:** Supakrit Kongkham
 **Student ID:** 650610858
 **Faculty of Engineering, Chiang Mai University**
-[GitHub Repository](https://github.com/9-Fakrizz/HandTracking_OpenCV.git)
 
 ---
 
